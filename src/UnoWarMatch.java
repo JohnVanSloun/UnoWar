@@ -31,17 +31,21 @@ public class UnoWarMatch {
         while (true) {
             if (turn) {
                 ai1Play = ai1.getPlay(hand1, cardPile);
+
                 if (ai1Play == null) {
                     return false;
                 }
+                
                 cardPile.play(ai1Play);
                 hand1.remove(ai1Play);
                 turn = false;
             } else {
                 ai2Play = ai2.getPlay(hand2, cardPile);
+
                 if (ai2Play == null) {
                     return true;
                 }
+
                 cardPile.play(ai2Play);
                 hand2.remove(ai2Play);
                 turn = true;

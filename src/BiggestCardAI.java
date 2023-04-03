@@ -10,26 +10,18 @@ public class BiggestCardAI extends AI{
     public Card getPlay(Hand hand, CardPile cardPile) {
         Card topCard = cardPile.getTopCard();
         Card handCard;
-        Card biggestCard = hand.get(0);
+        Card biggestCard = null;
 
         for (int i = 0; i < hand.getSize(); i++) {
             handCard = hand.get(i);
-            if ((handCard.getSuitName().equals(topCard.getSuitName())) &&
-                    (biggestCard.getRankNum() < topCard.getRankNum()))
-            {
-                biggestCard = handCard;
-            }
-            if ((handCard.getRankNum() >= topCard.getRankNum()) &&
-                    (handCard.getRankNum() > biggestCard.getRankNum()))
-            {
-                biggestCard = handCard;
-            }
-        }
 
-        if (!(biggestCard.getSuitName().equals(topCard.getSuitName())) &&
-                biggestCard.getRankNum() < topCard.getRankNum())
-        {
-            return null;
+            if (isValid(handCard, topCard)) {
+                if (biggestCard == null) {
+                    biggestCard = handCard;
+                } else if (handCard.getRankNum() > biggestCard.getRankNum()) {
+                    biggestCard = handCard;
+                }
+            }
         }
 
         return biggestCard;
