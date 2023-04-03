@@ -14,12 +14,21 @@ public class BiggestCardAI extends AI{
 
         for (int i = 0; i < hand.getSize(); i++) {
             handCard = hand.get(i);
-            if ((handCard.getRankNum() >= topCard.getRankNum()) && (handCard.getRankNum() > biggestCard.getRankNum())) {
+            if ((handCard.getSuitName().equals(topCard.getSuitName())) &&
+                    (biggestCard.getRankNum() < topCard.getRankNum()))
+            {
+                biggestCard = handCard;
+            }
+            if ((handCard.getRankNum() >= topCard.getRankNum()) &&
+                    (handCard.getRankNum() > biggestCard.getRankNum()))
+            {
                 biggestCard = handCard;
             }
         }
 
-        if (biggestCard.getRankNum() < topCard.getRankNum()) {
+        if (!(biggestCard.getSuitName().equals(topCard.getSuitName())) &&
+                biggestCard.getRankNum() < topCard.getRankNum())
+        {
             return null;
         }
 
