@@ -14,16 +14,21 @@ public class SmallestCardAI extends AI {
 
         for (int i = 0; i < hand.getSize(); i++) {
             handCard = hand.get(i);
-            if (handCard.getRankNum() >= topCard.getRankNum()) {
-                if (smallestCard.getRankNum() < topCard.getRankNum()){
-                    smallestCard = handCard;
-                } else if (handCard.getRankNum() < smallestCard.getRankNum()) {
-                    smallestCard = handCard;
-                }
+
+            if (handCard.getSuitName().equals(topCard.getSuitName()) &&
+                    (handCard.getRankNum() <= topCard.getRankNum()))
+            {
+                smallestCard = handCard;
+            } else if ((handCard.getRankNum() >= topCard.getRankNum()) &&
+                    (handCard.getRankNum() < smallestCard.getRankNum()))
+            {
+                smallestCard = handCard;
             }
         }
 
-        if (smallestCard.getRankNum() < topCard.getRankNum()) {
+        if (!(smallestCard.getSuitName().equals(topCard.getSuitName())) &&
+                (smallestCard.getRankNum() < topCard.getRankNum()))
+        {
             return null;
         }
 
